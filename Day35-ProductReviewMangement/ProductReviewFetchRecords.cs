@@ -9,43 +9,8 @@ namespace Day35_ProductReviewMangement
 {
     internal class ProductReviewFetchRecords
     {
-        public static void RetrieveTop3BasedOnRating(List<ProductReview> list)
-        {
-            Console.WriteLine("\n Retrieve Top3 Records Based on Rating");
-            var top3Records = list.OrderByDescending(p => p.Rating).Take(3).ToList();
-            Program.DisplayProducts(top3Records);
-        }
-        public static void FetchDataBasedOnProductIdAndRating(List<ProductReview> list)
-        {
-            Console.WriteLine("\n Fetch Data Based On Product Id And Rating");
-            List<ProductReview> result = list.Where(p => p.Rating > 3 && (p.ProductId == 1 || p.ProductId == 4 || p.ProductId == 9)).ToList();
-            Program.DisplayProducts(result);
-        }
-        public static void CountProductIdUsingGroupBy(List<ProductReview> list)    
-        {
-            Console.WriteLine("\n Count ProductId Using GroupBy ");
-            var result = list.GroupBy(p => p.ProductId).Select(p => new { Id = p.Key, count = p.Count() }).ToList();
-            foreach (var obj in result)
-            {
-                Console.WriteLine($"ProductID:{obj.Id} Count:{obj.count}");
-            }
-        }
-        public static void GetProductIdAndReview(List<ProductReview> list)     
-        {
-            Console.WriteLine("\n Get ProductId And Review ");
-            var result = list.Select(p => new { Id = p.ProductId, review = p.Review }).ToList();
-            foreach (var obj in result)
-            {
-                Console.WriteLine($"ProductID:{obj.Id} Review:{obj.review}");
-            }
-        }
-        public static void Skip5Records(List<ProductReview> list) 
-        {
-            Console.WriteLine("\n Skip5Records Display remaining product reviews");
-            var result = list.OrderByDescending(p => p.Rating).Skip(5).ToList();
-            Program.DisplayProducts(result);
-        }
-      public static void AddDataToTable()
+        
+        public static void AddDataToTable()
         {
             DataTable table = new DataTable();
             table.Columns.Add("ProductID");
@@ -66,7 +31,7 @@ namespace Day35_ProductReviewMangement
             table.Rows.Add(15, 11, true, "good", 80);
             table.Rows.Add(14, 12, true, "false", 20);
             table.Rows.Add(13, 13, true, "average", 50);
-            table.Rows.Add(12, 14, true, "nice",90);
+            table.Rows.Add(12, 14, true, "nice", 90);
             table.Rows.Add(11, 15, false, "poor", 10);
             table.Rows.Add(10, 16, true, "good", 80);
             table.Rows.Add(9, 17, false, "bad", 20);
@@ -79,14 +44,29 @@ namespace Day35_ProductReviewMangement
             table.Rows.Add(2, 24, true, "average", 50);
             table.Rows.Add(1, 25, true, "nice", 90);
             DisplayProductTable(table);
-      }
-        public static void  DisplayProductTable(DataTable table)
-        {
-            var productID = from products in table.AsEnumerable() select products.Field<string>("ProductID");
-            var userId = from products in table.AsEnumerable() select products.Field<string>("UserId");
-            var isLike = from products in table.AsEnumerable() select products.Field<string>("IsLike");
-            var review = from products in table.AsEnumerable() select products.Field<string>("Review");
-            var rating = from products in table.AsEnumerable() select products.Field<string>("Rating");
         }
+        public static void DisplayProductTable(DataTable table)
+        {
+            DataSet set = new DataSet();
+            var productID = from ProductReview in table.AsEnumerable() select ProductReview.Field<string>("ProductID");
+            var userId = from ProductReview in table.AsEnumerable() select ProductReview.Field<string>("UserId");
+            var isLike = from ProductReview in table.AsEnumerable() select ProductReview.Field<string>("IsLike");
+            var review = from ProductReview in table.AsEnumerable() select ProductReview.Field<string>("Review");
+            var rating = from ProductReview in table.AsEnumerable() select ProductReview.Field<string>("Rating");
+            // For each table in the DataSet, print the values of each row.
+
+            DataRow[] rows = table.Select();
+
+            // Print the value one column of each DataRow.
+            for (int i = 0; i < rows.Length; i++)
+            {
+                if (i == 0)//for header
+                {
+                    Console.WriteLine("ProductID" + " " + "UserId" + " " + "IsLike" + " " + "Review" + " " + "ProductID" + " " + "Rating");
+                }
+                Console.Write(rows[i]["ProductID"] + "\t" + rows[i]["UserId"] + "\t" + rows[i]["IsLike"] + "\t" + rows[i]["Review"] + "\t" + rows[i]["ProductID"] + "\t" + rows[i]["Rating"] + "\n");
+            }
+        }
+
     }
 }
