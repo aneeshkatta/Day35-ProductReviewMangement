@@ -29,5 +29,14 @@ namespace Day35_ProductReviewMangement
                 Console.WriteLine($"ProductID:{obj.Id} Count:{obj.count}");
             }
         }
+        public static void GetProductIdAndReview(List<ProductReview> list)     
+        {
+            Console.WriteLine("\n Get ProductId And Review ");
+            var result = list.Select(p => new { Id = p.ProductId, review = p.Review }).ToList();
+            foreach (var obj in result)
+            {
+                Console.WriteLine($"ProductID:{obj.Id} Review:{obj.review}");
+            }
+        }
     }
 }
