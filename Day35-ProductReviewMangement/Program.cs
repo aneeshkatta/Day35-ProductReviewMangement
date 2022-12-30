@@ -39,6 +39,7 @@ namespace Day35_ProductReviewMangement
                 new ProductReview() { ProductId = 1, UserId = 4, IsLike = true, Review = "nice", Rating = 90 },
             };
             DisplayProducts(list);
+            ProductReviewFetchRecords.RetrieveTop3BasedOnRating(list);
         }
         public static void DisplayProducts(List<ProductReview> list)
         {
