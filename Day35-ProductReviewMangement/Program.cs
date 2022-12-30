@@ -40,6 +40,7 @@ namespace Day35_ProductReviewMangement
             };
             DisplayProducts(list);
             ProductReviewFetchRecords.RetrieveTop3BasedOnRating(list);
+            ProductReviewFetchRecords.FetchDataBasedOnProductIdAndRating(list);
         }
         public static void DisplayProducts(List<ProductReview> list)
         {
