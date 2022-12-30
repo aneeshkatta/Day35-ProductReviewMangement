@@ -43,6 +43,7 @@ namespace Day35_ProductReviewMangement
             ProductReviewFetchRecords.FetchDataBasedOnProductIdAndRating(list);
             ProductReviewFetchRecords.CountProductIdUsingGroupBy(list);
             ProductReviewFetchRecords.GetProductIdAndReview(list);
+            ProductReviewFetchRecords.Skip5Records(list);
         }
         public static void DisplayProducts(List<ProductReview> list)
         {

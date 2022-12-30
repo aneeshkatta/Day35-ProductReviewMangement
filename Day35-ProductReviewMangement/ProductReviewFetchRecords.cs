@@ -38,5 +38,11 @@ namespace Day35_ProductReviewMangement
                 Console.WriteLine($"ProductID:{obj.Id} Review:{obj.review}");
             }
         }
+        public static void Skip5Records(List<ProductReview> list) 
+        {
+            Console.WriteLine("\n Skip5Records Display remaining product reviews");
+            var result = list.OrderByDescending(p => p.Rating).Skip(5).ToList();
+            Program.DisplayProducts(result);
+        }
     }
 }
