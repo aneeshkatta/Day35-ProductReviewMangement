@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Day35_ProductReviewMangement
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             List<ProductReview> list = new List<ProductReview>()
             {
@@ -39,11 +40,12 @@ namespace Day35_ProductReviewMangement
                 new ProductReview() { ProductId = 1, UserId = 25, IsLike = true, Review = "nice", Rating = 90 },
             };
             DisplayProducts(list);
-            ProductReviewFetchRecords.RetrieveTop3BasedOnRating(list);
-            ProductReviewFetchRecords.FetchDataBasedOnProductIdAndRating(list);
-            ProductReviewFetchRecords.CountProductIdUsingGroupBy(list);
-            ProductReviewFetchRecords.GetProductIdAndReview(list);
-            ProductReviewFetchRecords.Skip5Records(list);
+            //ProductReviewFetchRecords.RetrieveTop3BasedOnRating(list);
+            //ProductReviewFetchRecords.FetchDataBasedOnProductIdAndRating(list);
+            //ProductReviewFetchRecords.CountProductIdUsingGroupBy(list);
+            //ProductReviewFetchRecords.GetProductIdAndReview(list);
+            //ProductReviewFetchRecords.Skip5Records(list);
+            ProductReviewFetchRecords.AddDataToTable();         
         }
         public static void DisplayProducts(List<ProductReview> list)
         {
@@ -52,5 +54,6 @@ namespace Day35_ProductReviewMangement
                 Console.WriteLine(product);
             }
         }
+
     }
 }
