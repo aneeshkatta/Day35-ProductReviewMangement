@@ -20,5 +20,14 @@ namespace Day35_ProductReviewMangement
             List<ProductReview> result = list.Where(p => p.Rating > 3 && (p.ProductId == 1 || p.ProductId == 4 || p.ProductId == 9)).ToList();
             Program.DisplayProducts(result);
         }
+        public static void CountProductIdUsingGroupBy(List<ProductReview> list)    
+        {
+            Console.WriteLine("\n Count ProductId Using GroupBy ");
+            var result = list.GroupBy(p => p.ProductId).Select(p => new { Id = p.Key, count = p.Count() }).ToList();
+            foreach (var obj in result)
+            {
+                Console.WriteLine($"ProductID:{obj.Id} Count:{obj.count}");
+            }
+        }
     }
 }
